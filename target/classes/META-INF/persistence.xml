@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration JPA : déclaration de l'espace de noms et de la version 2.2 -->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+
+    <!-- Unité de persistance utilisée par l'application -->
+    <persistence-unit name="hibernate-inheritance"
+                      transaction-type="RESOURCE_LOCAL">
+
+        <!-- Fournisseur JPA : Hibernate -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+       
+        <!-- Entités de la stratégie SINGLE_TABLE -->
+        <class>com.example.model.singletable.Vehicule</class>
+        <class>com.example.model.singletable.Voiture</class>
+        <class>com.example.model.singletable.Moto</class>
+
+        <!-- Entités de la stratégie JOINED -->
+        <class>com.example.model.joined.Employe</class>
+        <class>com.example.model.joined.Developpeur</class>
+        <class>com.example.model.joined.Manager</class>
+        
+        
+        <!-- Entités de la stratégie TABLE_PER_CLASS -->
+        <class>com.example.model.tableperclass.Produit</class>
+        <class>com.example.model.tableperclass.Livre</class>
+        <class>com.example.model.tableperclass.Electronique</class>
+
+
+        <!-- Propriétés de connexion et de configuration -->
+        <properties>
+
+            <!-- Pilote JDBC de la base de données H2 -->
+            <property name="javax.persistence.jdbc.driver"
+                      value="org.h2.Driver"/>
+
+            <!-- URL de connexion à la base H2 en mémoire -->
+            <!-- DB_CLOSE_DELAY=-1 conserve la base tant que la JVM reste active -->
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1"/>
+
+            <!-- Nom d'utilisateur de la base de données -->
+            <property name="javax.persistence.jdbc.user"
+                      value="sa"/>
+
+            <!-- Mot de passe vide pour cette configuration de test -->
+            <property name="javax.persistence.jdbc.password"
+                      value=""/>
+
+            <!-- Dialecte SQL adapté à H2 -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.H2Dialect"/>
+
+            <!-- Crée les tables au démarrage et les supprime à la fermeture -->
+            <property name="hibernate.hbm2ddl.auto"
+                      value="create-drop"/>
+
+            <!-- Affiche les requêtes SQL dans la console -->
+            <property name="hibernate.show_sql"
+                      value="true"/>
+
+            <!-- Formate les requêtes SQL pour faciliter leur lecture -->
+            <property name="hibernate.format_sql"
+                      value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+
+</persistence>
